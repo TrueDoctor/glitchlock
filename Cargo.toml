@@ -1,0 +1,24 @@
+[package]
+name = "glitchlock"
+version = "0.1.0"
+edition = "2024"
+description = "A minimal Wayland screen locker with a glitch typing indicator"
+license = "MIT"
+
+[dependencies]
+kbvm = { version = "0.2", default-features = false }
+libc = "0.2"
+png = "0.18"
+wayland-client = "0.31"
+wayland-protocols = { version = "0.32", features = ["client", "staging"] }
+
+[lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+indexing_slicing = "deny"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+panic = "abort"
