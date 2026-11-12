@@ -319,11 +319,11 @@ impl App {
                 }
             }
             KeyAction::Erase => {
-                if self.password.pop() {
-                    match self.password.is_empty() {
-                        true => self.glitch.clear(),
-                        false => self.glitch.advance(now),
-                    }
+                self.password.pop();
+                // Like Escape, so pressing backspace often enough confirms the prompt is empty.
+                match self.password.is_empty() {
+                    true => self.glitch.cleared(now),
+                    false => self.glitch.advance(now),
                 }
             }
             KeyAction::Clear => {
